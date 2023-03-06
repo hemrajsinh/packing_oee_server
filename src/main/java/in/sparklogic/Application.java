@@ -14,7 +14,6 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -34,7 +33,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableAsync
 @EnableJpaRepositories(repositoryBaseClass = CustomRepositoryImpl.class)
-@EnableJpaAuditing(auditorAwareRef = "auditorAware", modifyOnCreate = false)
 @EnableSwagger2
 public class Application extends SpringBootServletInitializer {
 
@@ -97,9 +95,6 @@ public class Application extends SpringBootServletInitializer {
 			.antMatchers("/logout").fullyAuthenticated()
 			.antMatchers("*/oee").permitAll()
 			.antMatchers("*/v2/api-docs", "*/configuration/ui", "*/swagger-resources/**", "*/configuration/**","*/swagger-ui.html", "/webjars/**").permitAll()
-			.antMatchers("/user/**","/subject/**","/topic/**","/standard/**").hasRole("SuperAdmin")
-			.antMatchers("/standard/**").hasRole("BOAdmin")
-			.antMatchers("/topic/**","/subject/**").hasRole("BOTeacher") 
 			.anyRequest().authenticated()
 			.and()
 			.formLogin().loginPage("/login").permitAll();
