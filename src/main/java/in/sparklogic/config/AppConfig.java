@@ -1,8 +1,5 @@
 package in.sparklogic.config;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -13,8 +10,6 @@ import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.AuthorizationScope;
-import springfox.documentation.service.SecurityReference;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger.web.ApiKeyVehicle;
@@ -22,11 +17,6 @@ import springfox.documentation.swagger.web.SecurityConfiguration;
 
 
 @Configuration
-//@EnableWebSecurity
-//@EnableGlobalMethodSecurity(
-//        prePostEnabled = true,  // Enables @PreAuthorize and @PostAuthorize
-//        securedEnabled = true // Enables @Secured 
-// )
 public class AppConfig extends WebMvcConfigurerAdapter {
 
 	
@@ -62,21 +52,11 @@ public class AppConfig extends WebMvcConfigurerAdapter {
             .build();
     }
     
-
-    private List<SecurityReference> defaultAuth() { 
-        AuthorizationScope authorizationScope = new springfox.documentation.service.AuthorizationScope("global", "accessEverything"); 
-        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1]; 
-        authorizationScopes[0] = authorizationScope; 
-        return Arrays.asList(new SecurityReference("JWT", authorizationScopes)); 
-    }
     
     @Bean 
     SecurityConfiguration security() {
         return new SecurityConfiguration(null, null, null, null, "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYSIsInVzZXIiOnsic3RJbnNVc2VyIjoic2EiLCJkdEluc0RhdGUiOjE2NzcyNTY1MzEwMTMsInN0SW5zVGVybSI6IiIsImlkIjoxLCJzdFVzZXJOYW1lIjoic2EiLCJzdFVzZXJUeXBlIjoiU1VQRVJfQURNSU4iLCJzdFBhc3N3b3JkIjoic2EiLCJzdE5hbWUiOiJzYSIsInN0RW1haWwiOiJzYUBzYS5jb20iLCJmbGdJc0VtYWlsVmVyaWZpZWQiOmZhbHNlLCJzdExvZ28iOm51bGwsInN0SW1hZ2UiOm51bGwsInN0SW1hZ2VGb3JtYXR0ZWROYW1lIjoiMTY1XzhlYWQ3NTE2LTE4OTUtNDk4Ny04YTlkLTc0NDczMjEzYzUwOS5qcGciLCJzdExvZ29Gb3JtYXR0ZWROYW1lIjoiMTY1XzhlYWQ3NTE2LTE4OTUtNDk4Ny04YTlkLTc0NDczMjEzYzUwOS5qcGciLCJzdFNlY3VyaXR5S2V5IjoiMjdjR0h0dTQyZFZhSlc2NDA0NzliYlEyOXc0dnhaeGUiLCJmbGdJc0FjdGl2ZSI6dHJ1ZSwiZmxnSXNEZWxldGVkIjpmYWxzZX0sImlhdCI6MTY3ODAyNjEyMX0.tiECPig7T0pNCblzVqeYR57F2YasJcG_tuaWpi9b3sY", ApiKeyVehicle.HEADER, "Authorization", ",");
     }
     
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        return new UserDetailsServiceImpl();
-//    }
+
 }
