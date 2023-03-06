@@ -1,0 +1,107 @@
+server:
+  port: 9090
+  contextPath: /api
+#  ssl:
+#    key-store: "server.jks"
+#    key-store-password: "tomcat"
+#    keyStoreType: "JKS"
+#    keyAlias: "ssl"
+spring:
+  profiles:
+    active: mssql
+  http:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  datasource:
+    url: "jdbc:sqlserver://localhost:1433;encrypt=true;trustServerCertificate=true;databaseName=edplacelocal"
+    username: "sa"
+    password: "sa"
+    driver-class-name: "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+    testWhileIdle: true
+    validationQuery: "SELECT 1"
+# JPA / HIBERNATE
+  jpa:
+#    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        current_session_context_class: org.springframework.orm.hibernate4.SpringSessionContext
+        dialect: "org.hibernate.dialect.SQLServerDialect"
+        format_sql: true
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+  messages:
+    basename: "i18n/messages"
+    fallback-to-system-locale: true
+  mvc:
+    throw-exception-if-no-handler-found: true
+  mail:
+    host: google.com
+    port: 25
+    username: a@a.com
+    password: JEuXLsK1
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          required: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+
+logging:
+  level:
+#    root: TRACE
+#    org.apache.ibatis: TRACE
+#    org.springframework.web: DEBUG
+#    com.spring.ibatis.UserMapper: DEBUG
+    in.co.csci.service: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+    root: info
+  file: "logs/spring-boot-logging.log"
+
+security:
+  basic:
+    enabled: false
+
+fileUpload:
+  location: 'D:\\invoice'
+  common-location: 'D:\\invoice\\common'
+  directorySaperator: '\\'
+location:
+  files:
+    attachments: C:\\Projects\\ED\\attachments\\
+
+sender:
+  username: "Spark"
+
+  
+---
+
+spring: 
+  profiles: mssql
+  datasource: 
+    url: "jdbc:sqlserver://62.112.10.140;encrypt=true;trustServerCertificate=true;databaseName=edplacelocal"
+    username: "EDPlaceLocalUser"
+    password: "DR23@gbweDFG#"
+    driver-class-name: "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        current_session_context_class: org.springframework.orm.hibernate4.SpringSessionContext
+        dialect: "org.hibernate.dialect.SQLServerDialect"
+        format_sql: true
+        
+location:
+  files:
+    attachments: C:\\Projects\\ED\\attachments\\
