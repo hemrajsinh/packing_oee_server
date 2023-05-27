@@ -1,5 +1,6 @@
 package in.sparklogic.params;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -18,16 +19,18 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class OEEDataDTO implements java.io.Serializable {
+public class ParamsDTO implements java.io.Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Timestamp dateAndTime;
-	private short tagIndex;
-	private String tagDescription;
-	private String val;
-	private String varName;
+	private String machineId;
+	private String lineId;
+	private String dashboardType;
+	private String daySelection;
+	private String fromDate;
+	private String shiftSelection;
+	private String toDate;
 }

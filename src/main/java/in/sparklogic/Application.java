@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
@@ -34,6 +35,9 @@ public class Application extends SpringBootServletInitializer {
 
 	@Autowired
 	private ObjectMapper objectMapper;
+	
+	@Autowired
+    private JdbcTemplate jdbcTemplate;
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {

@@ -1,5 +1,6 @@
 package in.sparklogic.params;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -18,16 +19,17 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class OEEDataDTO implements java.io.Serializable {
+public class MachineDTO implements java.io.Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Timestamp dateAndTime;
-	private short tagIndex;
-	private String tagDescription;
-	private String val;
-	private String varName;
+	private BigDecimal machineId;
+	private String plantName;
+	private BigDecimal lineId;
+	private String lineName;
+	private String machineAlias;
+	private String onOverview;
 }
